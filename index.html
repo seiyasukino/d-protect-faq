@@ -1,0 +1,497 @@
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>よくある質問 - 株式会社D-Protect（ディープロテクト）</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px 20px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .header h1 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .header .company {
+        color: #3498db;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        font-weight: 500;
+      }
+
+      .search-container {
+        margin: 20px 0;
+      }
+
+      .search-box {
+        width: 100%;
+        max-width: 600px;
+        padding: 15px 20px;
+        font-size: 16px;
+        border: 2px solid #3498db;
+        border-radius: 25px;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .search-box:focus {
+        border-color: #2980b9;
+        box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+      }
+
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0;
+        justify-content: center;
+      }
+
+      .tab {
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        color: #2c3e50;
+      }
+
+      .tab:hover {
+        background: #3498db;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .tab.active {
+        background: #2980b9;
+        color: white;
+      }
+
+      .faq-content {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .category {
+        display: none;
+      }
+
+      .category.active {
+        display: block;
+      }
+
+      .category h2 {
+        color: #2c3e50;
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #3498db;
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .faq-item:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .faq-question {
+        background: #f8f9fa;
+        padding: 20px;
+        cursor: pointer;
+        font-weight: 600;
+        color: #2c3e50;
+        transition: all 0.3s ease;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .faq-question:hover {
+        background: #e9ecef;
+      }
+
+      .faq-question::after {
+        content: '+';
+        font-size: 20px;
+        font-weight: bold;
+        color: #3498db;
+        transition: transform 0.3s ease;
+      }
+
+      .faq-question.active::after {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: white;
+      }
+
+      .faq-answer.active {
+        padding: 20px;
+        max-height: 500px;
+      }
+
+      .contact-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-section h2 {
+        color: #e74c3c;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .contact-card {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .contact-card h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .line-card {
+        background: #e8f5e8;
+        border-left: 4px solid #27ae60;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .header .company {
+          font-size: 1.1rem;
+        }
+
+        .tabs {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .tab {
+          min-width: 200px;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>よくある質問</h1>
+        <div class="company">株式会社D-Protect（ディープロテクト）</div>
+        <p>警備スタッフ求人に関するよくある質問をまとめました</p>
+
+        <div class="search-container">
+          <input type="text" class="search-box" placeholder="質問を検索..." id="searchInput" />
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="showCategory('beginner')">🔰 未経験・初心者向け</button>
+        <button class="tab" onclick="showCategory('salary')">💰 給与・待遇</button>
+        <button class="tab" onclick="showCategory('work')">⏰ 勤務条件</button>
+        <button class="tab" onclick="showCategory('workplace')">🏢 職場環境</button>
+        <button class="tab" onclick="showCategory('interview')">📞 応募・面接</button>
+      </div>
+
+      <div class="faq-content">
+        <div class="category active" id="beginner">
+          <h2>🔰 未経験・初心者向け</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q1: 警備の仕事は未経験でも大丈夫ですか？</button>
+            <div class="faq-answer">
+              A1:
+              もちろん大丈夫です！入社前に法定研修（30時間）を実施し、現場でも先輩スタッフがしっかりサポートします。現在活躍中のスタッフの7割が未経験からスタートしています。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q2: どのような研修がありますか？</button>
+            <div class="faq-answer">
+              A2:
+              法定研修30時間（座学・実技）を実施します。警備業法、護身術、応急手当、警備用具の使い方など基本的な知識と技術を習得できます。研修期間中も時給をお支払いします。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q3: 年齢制限はありますか？</button>
+            <div class="faq-answer">
+              A3:
+              18歳以上であれば年齢上限はありません。20代から60代まで幅広い年代の方が活躍しています。体力に自信がない方でも、適性に応じた職場をご紹介します。
+            </div>
+          </div>
+        </div>
+
+        <div class="category" id="salary">
+          <h2>💰 給与・待遇について</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q4: 給与はいくらぐらいですか？</button>
+            <div class="faq-answer">
+              A4: <br />
+              ・施設警備：時給1,000円〜1,300円<br />
+              ・交通誘導：時給1,100円〜1,400円<br />
+              ・イベント警備：時給1,200円〜1,500円<br />
+              ・正社員：月給18万円〜25万円<br />
+              ※経験・資格・勤務地により異なります
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q5: 交通費は支給されますか？</button>
+            <div class="faq-answer">
+              A5:
+              全額支給いたします（上限月額3万円）。現場直行直帰が基本なので、自宅から現場までの交通費をお支払いします。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q6: 制服はありますか？</button>
+            <div class="faq-answer">A6: 制服・帽子・装備品は全て会社から貸与します。クリーニング代も会社負担です。</div>
+          </div>
+        </div>
+
+        <div class="category" id="work">
+          <h2>⏰ 勤務条件について</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q7: 勤務時間はどのようになりますか？</button>
+            <div class="faq-answer">
+              A7: <br />
+              ・日勤：8:00-17:00、9:00-18:00など<br />
+              ・夜勤：17:00-翌9:00、22:00-翌8:00など<br />
+              ・半日勤務：4-6時間<br />
+              希望に応じて調整可能です。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q8: 夜勤はありますか？</button>
+            <div class="faq-answer">
+              A8:
+              夜勤もありますが、強制ではありません。夜勤の場合は深夜手当（25%増）が付きます。体力的に不安な方は日勤のみの勤務も可能です。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q9: 休日はどうなりますか？</button>
+            <div class="faq-answer">
+              A9: <br />
+              ・正社員：週休2日制（シフト制）<br />
+              ・アルバイト：希望に応じて調整<br />
+              ・有給休暇：法定通り付与<br />
+              ・長期休暇：事前相談で対応可能
+            </div>
+          </div>
+        </div>
+
+        <div class="category" id="workplace">
+          <h2>🏢 職場環境について</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q10: どのような現場がありますか？</button>
+            <div class="faq-answer">
+              A10: <br />
+              ・オフィスビル、商業施設、病院、学校<br />
+              ・工事現場、道路工事<br />
+              ・コンサート、スポーツイベント、展示会<br />
+              ・駐車場、マンション<br />
+              お客様の希望と適性に応じて現場を選択できます。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q11: 女性でも働けますか？</button>
+            <div class="faq-answer">
+              A11:
+              もちろんです！女性スタッフも多数活躍しています。女性専用の更衣室完備、女性のみの現場もあります。セクハラ対策も徹底しています。
+            </div>
+          </div>
+        </div>
+
+        <div class="category" id="interview">
+          <h2>📞 応募・面接について</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">
+              Q12: 面接ではどのようなことを聞かれますか？
+            </button>
+            <div class="faq-answer">
+              A12: <br />
+              ・志望動機<br />
+              ・希望の勤務条件<br />
+              ・過去の職歴<br />
+              ・健康状態<br />
+              堅苦しい面接ではなく、お互いを知る場として気軽にお話しください。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q13: 面接時の服装は？</button>
+            <div class="faq-answer">A13: 私服で構いません。清潔感のある服装であれば、スーツでなくても大丈夫です。</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleAnswer(this)">Q14: 即日勤務は可能ですか？</button>
+            <div class="faq-answer">A14: 研修修了後、最短1週間程度で勤務開始可能です。緊急の場合はご相談ください。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <h2>📞 お問い合わせ</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>会社情報</h3>
+            <p><strong>株式会社D-Protect（ディープロテクト）</strong></p>
+            <p>📍 〒661-0002 兵庫県尼崎市塚口町3-38-5</p>
+            <p>📞 06-6427-7777</p>
+            <p>🕒 受付時間：平日10:00～17:00</p>
+            <p>🌐 <a href="https://www.daisou.co.jp/d-protect/" target="_blank">会社ホームページ</a></p>
+          </div>
+
+          <div class="contact-card line-card">
+            <h3>LINE公式アカウント</h3>
+            <p>📱 <strong>ディープロテクト 問合せ用</strong></p>
+            <p>お気軽にご相談ください！</p>
+            <p>※LINEでは24時間いつでもメッセージを受け付けております</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showCategory(categoryId) {
+        // すべてのカテゴリを非表示
+        const categories = document.querySelectorAll('.category');
+        categories.forEach((cat) => cat.classList.remove('active'));
+
+        // すべてのタブを非アクティブ
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach((tab) => tab.classList.remove('active'));
+
+        // 選択されたカテゴリを表示
+        document.getElementById(categoryId).classList.add('active');
+
+        // 選択されたタブをアクティブ
+        event.target.classList.add('active');
+      }
+
+      function toggleAnswer(button) {
+        const answer = button.nextElementSibling;
+        const isActive = answer.classList.contains('active');
+
+        // すべての回答を閉じる
+        const allAnswers = document.querySelectorAll('.faq-answer');
+        const allQuestions = document.querySelectorAll('.faq-question');
+
+        allAnswers.forEach((ans) => ans.classList.remove('active'));
+        allQuestions.forEach((q) => q.classList.remove('active'));
+
+        // クリックされた質問の回答を開く/閉じる
+        if (!isActive) {
+          answer.classList.add('active');
+          button.classList.add('active');
+        }
+      }
+
+      // 検索機能
+      document.getElementById('searchInput').addEventListener('input', function () {
+        const searchTerm = this.value.toLowerCase();
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector('.faq-question').textContent.toLowerCase();
+          const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+          if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = searchTerm === '' ? 'block' : 'none';
+          }
+        });
+
+        // 検索時はすべてのカテゴリを表示
+        if (searchTerm !== '') {
+          const categories = document.querySelectorAll('.category');
+          categories.forEach((cat) => cat.classList.add('active'));
+        }
+      });
+    </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"95d47246cd62961d","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+</body>
+</html>
+
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDn26Uo17PvuCFDuxdVFLvpv9GpgCmBRla7eU%2BgkYRgn2Ya1EpUpYxZYJ4ghp4fQEjlfcg3Ch86UBio8%2BoZ6c5H2jvOhBb7bSCIBthPmmMz6Bef98pqUlPswcu0KOlAM7oja0sxY4pWWx%2BO7ntUDwEQaYjMvNPs19b2WWwamWAafyPfxZr7jK1KM%2BSwx5FXEiSPOzIKaK9qSsvWsBAfQUnA58OV%2FEX7VsZWiS%2FfmGcHzbhBHzwNa0qCSyBRxA%2FizjA4F1YXU2xfG7Tq6m4WDi5m8RJKJepMDyZU%2Fmv0pcaVdX9dLg%2BerW51UpjcN4SVpopFzwzacnI4Yc790I3Tcpn3XapD7bP4Nq34a%2BwVp7iyw3j1srZS8ASVeSO4OOdnbxDs3MI%2BJltnwWDn9m0Ptf%2FvDqiS3uwxEPvBKNI%2Bjge2rlOeCGgGTR9XsPhfh7dAB%2BD6I2tC2exOdpR2Ll7xjOqUc5GhXZlSducNO6u%2BjoJSsLpqaPx8JIUh%2Bsh%2Ft5%2BRGNCg62z60NzDb8MxtS%2Fsa%2BNRs%3D";
+        window.__genspark_locale = "ja-JP";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDn26Uo17PvuCFDuxdVFLvpv9GpgCmBRla7eU+gkYRgn2Ya1EpUpYxZYJ4ghp4fQEjlfcg3Ch86UBio8+oZ6c5H2jvOhBb7bSCIBthPmmMz6Bef98pqUlPswcu0KOlAM7oja0sxY4pWWx+O7ntUDwEQaYjMvNPs19b2WWwamWAafyPfxZr7jK1KM+Swx5FXEiSPOzIKaK9qSsvWsBAfQUnA58OV/EX7VsZWiS/fmGcHzbhBHzwNa0qCSyBRxA/izjA4F1YXU2xfG7Tq6m4WDi5m8RJKJepMDyZU/mv0pcaVdX9dLg+erW51UpjcN4SVpopFzwzacnI4Yc790I3Tcpn3XapD7bP4Nq34a+wVp7iyw3j1srZS8ASVeSO4OOdnbxDs3MI+JltnwWDn9m0Ptf/vDqiS3uwxEPvBKNI+jge2rlOeCGgGTR9XsPhfh7dAB+D6I2tC2exOdpR2Ll7xjOqUc5GhXZlSducNO6u+joJSsLpqaPx8JIUh+sh/t5+RGNCg62z60NzDb8MxtS/sa+NRs=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
